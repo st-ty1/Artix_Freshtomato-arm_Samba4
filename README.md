@@ -12,5 +12,6 @@ How to build Samba 4.11.x for FreshTomato-arm:
 All files of Samba4, which are copied to the installation directory of Freshtomato (\<path/to/your/FT-arm/repo\>/src-rt-6.x.4708/router/arm-uclibc/install/) have been checked with the FT own libfoo.pl to not contain any unresolved symbol.
 
 Remember that install target in Makefile_samba4.11 is not size-optimized yet (i.e. with modifying libfoo.pl the shared libs of samba4 can be rebuild in a more comprimized form from their corresponding static libs)
+actual size for ac68e (RT-AC56U; VPN-version): 16.9MB
 
 BR st-ty1/st_ty/st_ty
