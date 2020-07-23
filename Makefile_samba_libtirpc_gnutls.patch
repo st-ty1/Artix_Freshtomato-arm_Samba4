@@ -82,8 +82,8 @@
 +	install -D gnutls/lib/.libs/libgnutls.so.30.27.0 $(INSTALLDIR)/gnutls/usr/lib/libgnutls.so.30.27.0
 +	$(STRIP) $(INSTALLDIR)/gnutls/usr/lib/libgnutls.so.30.27.0
 +	cd $(INSTALLDIR)/gnutls/usr/lib/ && \
-+		ln -sf libgnutls.30.27.0 libgnutls.so.30 && \
-+		ln -sf libgnutls.30.27.0 libgnutls.so
++		ln -sf libgnutls.so.30.27.0 libgnutls.so.30 && \
++		ln -sf libgnutls.so.30.27.0 libgnutls.so
 +
 +gnutls-clean:
 +	-@$(MAKE) -C gnutls clean
