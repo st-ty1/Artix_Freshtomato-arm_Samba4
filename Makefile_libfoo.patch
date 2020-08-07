@@ -1,0 +1,364 @@
+--- Makefile.orig	2020-08-06 21:14:26.616650759 +0200
++++ Makefile	2020-08-06 21:16:57.276643834 +0200
+@@ -581,9 +581,9 @@
+ 	@echo ---
+ 
+ ifeq ($(TCONFIG_OPTIMIZE_SHARED_LIBS),y)
+-ifneq ($(TCONFIG_BCMARM),y)
++#ifneq ($(TCONFIG_BCMARM),y)
+ 	@$(SRCBASE)/btools/libfoo.pl
+-endif
++#endif
+ else
+ 	@$(SRCBASE)/btools/libfoo.pl --noopt
+ endif
+@@ -1066,16 +1066,17 @@
+ 		ln -sf xtables-legacy-multi iptables-save && \
+ 		ln -sf xtables-legacy-multi iptables
+ 	install -d $(INSTALLDIR)/iptables-1.8.x/usr/lib/xtables
+-	install -D iptables-1.8.x/libiptc/.libs/lib*.so $(INSTALLDIR)/iptables-1.8.x/usr/lib/
+-	cd $(INSTALLDIR)/iptables-1.8.x/usr/lib && \
+-		ln -sf libip4tc.so libip4tc.so.2 && \
+-		ln -sf libip4tc.so libip4tc.so.2.0.0 && \
+-		ln -sf libip6tc.so libip6tc.so.2 && \
+-		ln -sf libip6tc.so libip6tc.so.2.0.0
+-	install -D iptables-1.8.x/libxtables/.libs/lib*.so $(INSTALLDIR)/iptables-1.8.x/usr/lib/
+-	cd $(INSTALLDIR)/iptables-1.8.x/usr/lib && \
+-		ln -sf libxtables.so libxtables.so.12 && \
+-		ln -sf libxtables.so libxtables.so.12.2.0
++	install -D iptables-1.8.x/libiptc/.libs/libip4tc.so $(INSTALLDIR)/iptables-1.8.x/usr/lib/libip4tc.so.2
++	install -D iptables-1.8.x/libiptc/.libs/libip6tc.so $(INSTALLDIR)/iptables-1.8.x/usr/lib/libip6tc.so.2
++#	cd $(INSTALLDIR)/iptables-1.8.x/usr/lib && \
++#		ln -sf libip4tc.so libip4tc.so.2 && \
++#		ln -sf libip4tc.so libip4tc.so.2.0.0 && \
++#		ln -sf libip6tc.so libip6tc.so.2 && \
++#		ln -sf libip6tc.so libip6tc.so.2.0.0
++	install -D iptables-1.8.x/libxtables/.libs/libxtables.so $(INSTALLDIR)/iptables-1.8.x/usr/lib/libxtables.so.12
++#	cd $(INSTALLDIR)/iptables-1.8.x/usr/lib && \
++#		ln -sf libxtables.so libxtables.so.12 && \
++#		ln -sf libxtables.so libxtables.so.12.2.0
+ 	install -D iptables-1.8.x/extensions/*.so $(INSTALLDIR)/iptables-1.8.x/usr/lib/xtables
+ ifeq ($(TCONFIG_IPV6),y)
+ 	cd $(INSTALLDIR)/iptables-1.8.x/usr/sbin && \
+@@ -1144,11 +1145,11 @@
+ 	@rm -f libnfnetlink/src/libnfnetlink.la
+ 
+ libnfnetlink-install:
+-	install -D libnfnetlink/src/.libs/libnfnetlink.so.0.2.0 $(INSTALLDIR)/libnfnetlink/usr/lib/libnfnetlink.so.0.2.0
+-	$(STRIP) -s $(INSTALLDIR)/libnfnetlink/usr/lib/libnfnetlink.so.0.2.0
+-	cd $(INSTALLDIR)/libnfnetlink/usr/lib/ && \
+-		ln -sf libnfnetlink.so.0.2.0 libnfnetlink.so.0 && \
+-		ln -sf libnfnetlink.so.0.2.0 libnfnetlink.so
++	install -D libnfnetlink/src/.libs/libnfnetlink.so.0.2.0 $(INSTALLDIR)/libnfnetlink/usr/lib/libnfnetlink.so.0
++	$(STRIP) -s $(INSTALLDIR)/libnfnetlink/usr/lib/libnfnetlink.so.0
++#	cd $(INSTALLDIR)/libnfnetlink/usr/lib/ && \
++#		ln -sf libnfnetlink.so.0.2.0 libnfnetlink.so.0 && \
++#		ln -sf libnfnetlink.so.0.2.0 libnfnetlink.so
+ 
+ libnfnetlink-clean:
+ 	-@$(MAKE) -C libnfnetlink distclean
+@@ -1232,9 +1233,9 @@
+ 	$(MAKE) -C $@
+ 
+ libusb10-install:
+-	install -D libusb10/libusb/.libs/libusb-1.0.so $(INSTALLDIR)/libusb10/usr/lib/libusb-1.0.so
+-	$(STRIP) $(INSTALLDIR)/libusb10/usr/lib/*.so
+-	cd $(INSTALLDIR)/libusb10/usr/lib && ln -sf libusb-1.0.so libusb-1.0.so.0
++	install -D libusb10/libusb/.libs/libusb-1.0.so $(INSTALLDIR)/libusb10/usr/lib/libusb-1.0.so.0
++	$(STRIP) $(INSTALLDIR)/libusb10/usr/lib/*.so.0
++#	cd $(INSTALLDIR)/libusb10/usr/lib && ln -sf libusb-1.0.so libusb-1.0.so.0
+ 
+ libusb10-clean:
+ 	-@$(MAKE) -C $@ clean
+@@ -1488,11 +1489,11 @@
+ 
+ sqlite-install:
+ ifeq ($(TCONFIG_NGINX),y)
+-	install -D sqlite/.libs/libsqlite3.so.0.8.6 $(INSTALLDIR)/sqlite/usr/lib/libsqlite3.so.0.8.6
+-	$(STRIP) $(INSTALLDIR)/sqlite/usr/lib/libsqlite3.so.0.8.6
+-	cd $(INSTALLDIR)/sqlite/usr/lib/ && \
+-		ln -sf libsqlite3.so.0.8.6 libsqlite3.so.0 && \
+-		ln -sf libsqlite3.so.0.8.6 libsqlite3.so
++	install -D sqlite/.libs/libsqlite3.so.0.8.6 $(INSTALLDIR)/sqlite/usr/lib/libsqlite3.so.0
++	$(STRIP) $(INSTALLDIR)/sqlite/usr/lib/libsqlite3.so.0
++#	cd $(INSTALLDIR)/sqlite/usr/lib/ && \
++#		ln -sf libsqlite3.so.0.8.6 libsqlite3.so.0 && \
++#		ln -sf libsqlite3.so.0.8.6 libsqlite3.so
+ endif
+ 	@true
+ 
+@@ -1828,11 +1829,11 @@
+ 	@sed 's/#.*//g;s/[ \t]\+/ /g;s/^[ \t]*//;s/[ \t]*$$//;/^$$/d' < $(TOP)/ebtables/ethertypes > $(TARGETDIR)/rom/etc/ethertypes
+ 	chmod 0644 $(TARGETDIR)/rom/etc/ethertypes
+ 	install -D ebtables/.libs/ebtables-legacy $(INSTALLDIR)/ebtables/usr/sbin/ebtables-legacy
+-	install -D ebtables/.libs/libebtc.so.0.0.0 $(INSTALLDIR)/ebtables/usr/lib/libebtc.so.0.0.0
++	install -D ebtables/.libs/libebtc.so.0.0.0 $(INSTALLDIR)/ebtables/usr/lib/libebtc.so.0
+ 	$(STRIP) $(INSTALLDIR)/ebtables/usr/sbin/ebtables-legacy
+-	$(STRIP) $(INSTALLDIR)/ebtables/usr/lib/libebtc.so.0.0.0
++	$(STRIP) $(INSTALLDIR)/ebtables/usr/lib/libebtc.so.0
+ 	cd $(INSTALLDIR)/ebtables/usr/sbin/ && ln -sf ebtables-legacy ebtables
+-	cd $(INSTALLDIR)/ebtables/usr/lib/ && ln -sf libebtc.so.0.0.0 libebtc.so && ln -sf libebtc.so.0.0.0 libebtc.so.0
++#	cd $(INSTALLDIR)/ebtables/usr/lib/ && ln -sf libebtc.so.0.0.0 libebtc.so && ln -sf libebtc.so.0.0.0 libebtc.so.0
+ 
+ ebtables-clean:
+ 	-@$(MAKE) -C ebtables clean
+@@ -1926,13 +1927,13 @@
+ 	@$(MAKE) -C pcre
+ 
+ pcre-install:
+-	install -D pcre/.libs/libpcre.so.1 $(INSTALLDIR)/pcre/usr/lib/libpcre.so.1.2.12
+-	$(STRIP) -s $(INSTALLDIR)/pcre/usr/lib/libpcre.so.1.2.12
+-	install -D pcre/.libs/libpcreposix.so.0.0.7 $(INSTALLDIR)/pcre/usr/lib/libpcreposix.so.0.0.7
+-	$(STRIP) -s $(INSTALLDIR)/pcre/usr/lib/libpcreposix.so.0.0.7
+-	cd $(INSTALLDIR)/pcre/usr/lib/ && \
+-		ln -sf libpcre.so.1.2.12 libpcre.so.1 && \
+-		ln -sf libpcreposix.so.0.0.7 libpcreposix.so.0
++	install -D pcre/.libs/libpcre.so.1 $(INSTALLDIR)/pcre/usr/lib/libpcre.so.1
++	$(STRIP) -s $(INSTALLDIR)/pcre/usr/lib/libpcre.so.1
++	install -D pcre/.libs/libpcreposix.so.0.0.7 $(INSTALLDIR)/pcre/usr/lib/libpcreposix.so.0
++	$(STRIP) -s $(INSTALLDIR)/pcre/usr/lib/libpcreposix.so.0
++#	cd $(INSTALLDIR)/pcre/usr/lib/ && \
++#		ln -sf libpcre.so.1.2.12 libpcre.so.1 && \
++#		ln -sf libpcreposix.so.0.0.7 libpcreposix.so.0
+ 
+ pcre-clean:
+ 	( if [ -f pcre/Makefile ]; then \
+@@ -1954,11 +1955,11 @@
+ 	@$(MAKE) -C libxml2 DESTDIR=$(TOP)/libxml2/staged install
+ 
+ libxml2-install:
+-	install -D libxml2/.libs/libxml2.so.2.9.10 $(INSTALLDIR)/libxml2/usr/lib/libxml2.so.2.9.10
+-	$(STRIP) $(INSTALLDIR)/libxml2/usr/lib/libxml2.so.2.9.10
+-	cd $(INSTALLDIR)/libxml2/usr/lib && \
+-		ln -sf libxml2.so.2.9.10 libxml2.so.2 && \
+-		ln -sf libxml2.so.2.9.10 libxml2.so
++	install -D libxml2/.libs/libxml2.so.2.9.10 $(INSTALLDIR)/libxml2/usr/lib/libxml2.so.2
++	$(STRIP) $(INSTALLDIR)/libxml2/usr/lib/libxml2.so.2
++#	cd $(INSTALLDIR)/libxml2/usr/lib && \
++#		ln -sf libxml2.so.2.9.10 libxml2.so.2 && \
++#		ln -sf libxml2.so.2.9.10 libxml2.so
+ 
+ libxml2-clean:
+ 	-@$(MAKE) -C libxml2 clean
+@@ -1977,16 +1978,16 @@
+ 	@$(MAKE) -C libpng DESTDIR=$(TOP)/libpng/staged install
+ 
+ libpng-install:
+-	install -D libpng/.libs/libpng.so.3.59.0 $(INSTALLDIR)/libpng/usr/lib/libpng.so.3.59.0
+-	$(STRIP) $(INSTALLDIR)/libpng/usr/lib/libpng.so.3.59.0
+-	cd $(INSTALLDIR)/libpng/usr/lib && \
+-		ln -sf libpng.so.3.59.0 libpng.so && \
+-		ln -sf libpng.so.3.59.0 libpng.so.3
+-	install -D libpng/.libs/libpng12.so.0.59.0 $(INSTALLDIR)/libpng/usr/lib/libpng12.so.0.59.0
+-	$(STRIP) $(INSTALLDIR)/libpng/usr/lib/libpng12.so.0.59.0
+-	cd $(INSTALLDIR)/libpng/usr/lib && \
+-		ln -sf libpng12.so.0.59.0 libpng12.so && \
+-		ln -sf libpng12.so.0.59.0 libpng12.so.0
++	install -D libpng/.libs/libpng.so.3.59.0 $(INSTALLDIR)/libpng/usr/lib/libpng.so.3
++	$(STRIP) $(INSTALLDIR)/libpng/usr/lib/libpng.so.3
++#	cd $(INSTALLDIR)/libpng/usr/lib && \
++#		ln -sf libpng.so.3.59.0 libpng.so && \
++#		ln -sf libpng.so.3.59.0 libpng.so.3
++	install -D libpng/.libs/libpng12.so.0.59.0 $(INSTALLDIR)/libpng/usr/lib/libpng12.so.0
++	$(STRIP) $(INSTALLDIR)/libpng/usr/lib/libpng12.so.0
++#	cd $(INSTALLDIR)/libpng/usr/lib && \
++#		ln -sf libpng12.so.0.59.0 libpng12.so && \
++#		ln -sf libpng12.so.0.59.0 libpng12.so.0
+ 
+ libpng-clean:
+ 	-@$(MAKE) -C libpng clean
+@@ -2229,16 +2230,16 @@
+ 	$(STRIP) $(INSTALLDIR)/mysql/usr/libexec/mysqld
+ 	cd $(INSTALLDIR)/mysql/usr/bin && ln -sf ../libexec/mysqld mysqld
+ #	install -D -m 755 mysql/staged/usr/bin/mysqld_safe $(INSTALLDIR)/mysql/usr/bin
+-	install -D -m 755 mysql/staged/usr/lib/mysql/libmysqlclient.so.16.0.0 $(INSTALLDIR)/mysql/usr/lib/mysql
+-	$(STRIP) $(INSTALLDIR)/mysql/usr/lib/mysql/libmysqlclient.so.16.0.0
+-	-@cd $(INSTALLDIR)/mysql/usr/lib/mysql && \
+-		ln -sf libmysqlclient.so.16.0.0 libmysqlclient.so.16 && \
+-		ln -sf libmysqlclient.so.16.0.0 libmysqlclient.so
+-	install -D -m 755 mysql/staged/usr/lib/mysql/libmysqlclient_r.so.16.0.0 $(INSTALLDIR)/mysql/usr/lib/mysql
+-	$(STRIP) $(INSTALLDIR)/mysql/usr/lib/mysql/libmysqlclient_r.so.16.0.0
+-	-@cd $(INSTALLDIR)/mysql/usr/lib/mysql && \
+-		ln -sf libmysqlclient_r.so.16.0.0 libmysqlclient_r.so.16 && \
+-		ln -sf libmysqlclient_r.so.16.0.0 libmysqlclient_r.so
++	install -D -m 755 mysql/staged/usr/lib/mysql/libmysqlclient.so.16.0.0 $(INSTALLDIR)/mysql/usr/lib/mysql/libmysqlclient.so.16
++	$(STRIP) $(INSTALLDIR)/mysql/usr/lib/mysql/libmysqlclient.so.16
++#	-@cd $(INSTALLDIR)/mysql/usr/lib/mysql && \
++#		ln -sf libmysqlclient.so.16.0.0 libmysqlclient.so.16 && \
++#		ln -sf libmysqlclient.so.16.0.0 libmysqlclient.so
++	install -D -m 755 mysql/staged/usr/lib/mysql/libmysqlclient_r.so.16.0.0 $(INSTALLDIR)/mysql/usr/lib/mysql/libmysqlclient_r.so.16
++	$(STRIP) $(INSTALLDIR)/mysql/usr/lib/mysql/libmysqlclient_r.so.16
++#	-@cd $(INSTALLDIR)/mysql/usr/lib/mysql && \
++#		ln -sf libmysqlclient_r.so.16.0.0 libmysqlclient_r.so.16 && \
++#		ln -sf libmysqlclient_r.so.16.0.0 libmysqlclient_r.so
+ #	-@cd $(INSTALLDIR)/mysql/usr/lib/mysql/plugin && cp -arfpu $(TOP)/mysql/staged/usr/lib/mysql/plugin/* . && \
+ #	rm -f *.la *.a && \
+ #	$(STRIP) *.so.*
+@@ -2265,11 +2266,11 @@
+ 	@rm -f lzo/stamp-h1
+ 
+ lzo-install:
+-	install -D lzo/src/.libs/liblzo2.so $(INSTALLDIR)/lzo/usr/lib/liblzo2.so.2.0.0
+-	$(STRIP) $(INSTALLDIR)/lzo/usr/lib/liblzo2.so.2.0.0
+-	cd $(INSTALLDIR)/lzo/usr/lib && \
+-		ln -sf liblzo2.so.2.0.0 liblzo2.so.2 && \
+-		ln -sf liblzo2.so.2.0.0 liblzo2.so
++	install -D lzo/src/.libs/liblzo2.so $(INSTALLDIR)/lzo/usr/lib/liblzo2.so.2
++	$(STRIP) $(INSTALLDIR)/lzo/usr/lib/liblzo2.so.2
++#	cd $(INSTALLDIR)/lzo/usr/lib && \
++#		ln -sf liblzo2.so.2.0.0 liblzo2.so.2 && \
++#		ln -sf liblzo2.so.2.0.0 liblzo2.so
+ 
+ openvpn/Makefile:
+ 	$(call patch_files,openvpn)
+@@ -2349,9 +2350,9 @@
+ 	@$(MAKE) -C libcurl DESTDIR=$(TOP)/libcurl/staged install
+ 
+ libcurl-install:
+-	install -D libcurl/lib/.libs/libcurl.so.4.6.0 $(INSTALLDIR)/libcurl/usr/lib/libcurl.so.4.6.0
+-	$(STRIP) -s $(INSTALLDIR)/libcurl/usr/lib/libcurl.so.4.6.0
+-	cd $(INSTALLDIR)/libcurl/usr/lib/ && ln -sf libcurl.so.4.6.0 libcurl.so && ln -sf libcurl.so.4.6.0 libcurl.so.4
++	install -D libcurl/lib/.libs/libcurl.so.4.6.0 $(INSTALLDIR)/libcurl/usr/lib/libcurl.so.4
++	$(STRIP) -s $(INSTALLDIR)/libcurl/usr/lib/libcurl.so.4
++#	cd $(INSTALLDIR)/libcurl/usr/lib/ && ln -sf libcurl.so.4.6.0 libcurl.so && ln -sf libcurl.so.4.6.0 libcurl.so.4
+ 	install -D libcurl/src/.libs/curl $(INSTALLDIR)/libcurl/usr/sbin/curl
+ 	$(STRIP) -s $(INSTALLDIR)/libcurl/usr/sbin/curl
+ 
+@@ -2403,11 +2404,11 @@
+ 
+ libiconv-install:
+ 	install -d $(INSTALLDIR)/libiconv/usr/lib
+-	install libiconv/lib/.libs/libiconv.so.2.6.1 $(INSTALLDIR)/libiconv/usr/lib/libiconv.so.2.6.1
+-	$(STRIP) -s $(INSTALLDIR)/libiconv/usr/lib/libiconv.so.2.6.1
+-	cd $(INSTALLDIR)/libiconv/usr/lib/ && \
+-		ln -sf libiconv.so.2.6.1 libiconv.so.2 && \
+-		ln -sf libiconv.so.2.6.1 libiconv.so
++	install libiconv/lib/.libs/libiconv.so.2.6.1 $(INSTALLDIR)/libiconv/usr/lib/libiconv.so.2
++	$(STRIP) -s $(INSTALLDIR)/libiconv/usr/lib/libiconv.so.2
++#	cd $(INSTALLDIR)/libiconv/usr/lib/ && \
++#		ln -sf libiconv.so.2.6.1 libiconv.so.2 && \
++#		ln -sf libiconv.so.2.6.1 libiconv.so
+ 
+ transmission/stamp-h1: $(OPENSSLDIR) libcurl libevent zlib
+ 	$(call patch_files,transmission)
+@@ -2655,11 +2656,11 @@
+ 
+ libsodium-install:
+ 	install -d $(INSTALLDIR)/libsodium/usr/lib
+-	install -D libsodium/src/libsodium/.libs/libsodium.so.23.0.0 $(INSTALLDIR)/libsodium/usr/lib/libsodium.so.23.0.0
+-	$(STRIP) -s $(INSTALLDIR)/libsodium/usr/lib/libsodium.so.23.0.0
+-	cd $(INSTALLDIR)/libsodium/usr/lib/ && \
+-		ln -sf libsodium.so.23.0.0 libsodium.so.23 && \
+-		ln -sf libsodium.so.23.0.0 libsodium.so
++	install -D libsodium/src/libsodium/.libs/libsodium.so.23.0.0 $(INSTALLDIR)/libsodium/usr/lib/libsodium.so.23
++	$(STRIP) -s $(INSTALLDIR)/libsodium/usr/lib/libsodium.so.23
++#	cd $(INSTALLDIR)/libsodium/usr/lib/ && \
++#		ln -sf libsodium.so.23.0.0 libsodium.so.23 && \
++#		ln -sf libsodium.so.23.0.0 libsodium.so
+ 
+ libsodium-clean:
+ 	-$(MAKE) -C libsodium clean
+@@ -2817,11 +2818,11 @@
+ 
+ libmnl-install:
+ 	install -d $(INSTALLDIR)/libmnl/usr/lib/
+-	install libmnl/src/.libs/libmnl.so.0.2.0 $(INSTALLDIR)/libmnl/usr/lib/libmnl.so.0.2.0
+-	$(STRIP) $(INSTALLDIR)/libmnl/usr/lib/libmnl.so.0.2.0
+-	cd $(INSTALLDIR)/libmnl/usr/lib/ && \
+-		ln -sf libmnl.so.0.2.0 libmnl.so.0 && \
+-		ln -sf libmnl.so.0.2.0 libmnl.so
++	install libmnl/src/.libs/libmnl.so.0.2.0 $(INSTALLDIR)/libmnl/usr/lib/libmnl.so.0
++	$(STRIP) $(INSTALLDIR)/libmnl/usr/lib/libmnl.so.0
++#	cd $(INSTALLDIR)/libmnl/usr/lib/ && \
++#		ln -sf libmnl.so.0.2.0 libmnl.so.0 && \
++#		ln -sf libmnl.so.0.2.0 libmnl.so
+ 
+ libmnl-clean:
+ 	-@$(MAKE) -C libmnl clean
+@@ -2845,11 +2846,11 @@
+ libnetfilter_conntrack-install:
+ 	install -d $(INSTALLDIR)/libnetfilter_conntrack/usr/lib/
+ 	install libnetfilter_conntrack/src/.libs/libnetfilter_conntrack.so.3.7.0 \
+-	$(INSTALLDIR)/libnetfilter_conntrack/usr/lib/libnetfilter_conntrack.so.3.7.0
+-	$(STRIP) $(INSTALLDIR)/libnetfilter_conntrack/usr/lib/libnetfilter_conntrack.so.3.7.0
+-	cd $(INSTALLDIR)/libnetfilter_conntrack/usr/lib/ && \
+-		ln -sf libnetfilter_conntrack.so.3.7.0 libnetfilter_conntrack.so.3 && \
+-		ln -sf libnetfilter_conntrack.so.3.7.0 libnetfilter_conntrack.so
++	$(INSTALLDIR)/libnetfilter_conntrack/usr/lib/libnetfilter_conntrack.so.3
++	$(STRIP) $(INSTALLDIR)/libnetfilter_conntrack/usr/lib/libnetfilter_conntrack.so.3
++#	cd $(INSTALLDIR)/libnetfilter_conntrack/usr/lib/ && \
++#		ln -sf libnetfilter_conntrack.so.3.7.0 libnetfilter_conntrack.so.3 && \
++#		ln -sf libnetfilter_conntrack.so.3.7.0 libnetfilter_conntrack.so
+ 
+ libnetfilter_conntrack-clean:
+ 	-@$(MAKE) -C libnetfilter_conntrack clean
+@@ -2873,11 +2874,11 @@
+ libnetfilter_log-install:
+ 	install -d $(INSTALLDIR)/libnetfilter_log/usr/lib/
+ 	install libnetfilter_log/src/.libs/libnetfilter_log.so.1.1.0 \
+-	$(INSTALLDIR)/libnetfilter_log/usr/lib/libnetfilter_log.so.1.1.0
+-	$(STRIP) $(INSTALLDIR)/libnetfilter_log/usr/lib/libnetfilter_log.so.1.1.0
+-	cd $(INSTALLDIR)/libnetfilter_log/usr/lib/ && \
+-		ln -sf libnetfilter_log.so.1.1.0 libnetfilter_log.so.1 && \
+-		ln -sf libnetfilter_log.so.1.1.0 libnetfilter_log.so
++	$(INSTALLDIR)/libnetfilter_log/usr/lib/libnetfilter_log.so.1
++	$(STRIP) $(INSTALLDIR)/libnetfilter_log/usr/lib/libnetfilter_log.so.1
++#	cd $(INSTALLDIR)/libnetfilter_log/usr/lib/ && \
++#		ln -sf libnetfilter_log.so.1.1.0 libnetfilter_log.so.1 && \
++#		ln -sf libnetfilter_log.so.1.1.0 libnetfilter_log.so
+ 
+ libnetfilter_log-clean:
+ 	-@$(MAKE) -C libnetfilter_log clean
+@@ -2901,11 +2902,11 @@
+ libnetfilter_queue-install:
+ 	install -d $(INSTALLDIR)/libnetfilter_queue/usr/lib/
+ 	install libnetfilter_queue/src/.libs/libnetfilter_queue.so.1.4.0 \
+-	$(INSTALLDIR)/libnetfilter_queue/usr/lib/libnetfilter_queue.so.1.4.0
+-	$(STRIP) $(INSTALLDIR)/libnetfilter_queue/usr/lib/libnetfilter_queue.so.1.4.0
+-	cd $(INSTALLDIR)/libnetfilter_queue/usr/lib/ && \
+-		ln -sf libnetfilter_queue.so.1.4.0 libnetfilter_queue.so.1 && \
+-		ln -sf libnetfilter_queue.so.1.4.0 libnetfilter_queue.so
++	$(INSTALLDIR)/libnetfilter_queue/usr/lib/libnetfilter_queue.so.1
++	$(STRIP) $(INSTALLDIR)/libnetfilter_queue/usr/lib/libnetfilter_queue.so.1
++#	cd $(INSTALLDIR)/libnetfilter_queue/usr/lib/ && \
++#		ln -sf libnetfilter_queue.so.1.4.0 libnetfilter_queue.so.1 && \
++#		ln -sf libnetfilter_queue.so.1.4.0 libnetfilter_queue.so
+ 
+ libnetfilter_queue-clean:
+ 	-@$(MAKE) -C libnetfilter_queue clean
+@@ -2955,12 +2956,12 @@
+ ipset-install:
+ 	install -D ipset/src/ipset $(INSTALLDIR)/ipset/usr/sbin/ipset
+ 	install -d $(INSTALLDIR)/ipset/usr/lib/
+-	install ipset/lib/.libs/libipset.so.11.1.0 $(INSTALLDIR)/ipset/usr/lib/libipset.so.11.1.0
+-	$(STRIP) $(INSTALLDIR)/ipset/usr/lib/libipset.so.11.1.0
++	install ipset/lib/.libs/libipset.so.11.1.0 $(INSTALLDIR)/ipset/usr/lib/libipset.so.11
++	$(STRIP) $(INSTALLDIR)/ipset/usr/lib/libipset.so.11
+ 	$(STRIP) $(INSTALLDIR)/ipset/usr/sbin/ipset
+-	cd $(INSTALLDIR)/ipset/usr/lib/ && \
+-		ln -sf libipset.so.11.1.0 libipset.so.11 && \
+-		ln -sf libipset.so.11.1.0 libipset.so
++#	cd $(INSTALLDIR)/ipset/usr/lib/ && \
++#		ln -sf libipset.so.11.1.0 libipset.so.11 && \
++#		ln -sf libipset.so.11.1.0 libipset.so
+ 
+ ipset-clean:
+ 	-@$(MAKE) -C ipset clean
+@@ -3050,12 +3051,12 @@
+ iperf-install:
+ 	install -D iperf/src/.libs/iperf3 $(INSTALLDIR)/iperf/usr/sbin/iperf
+ 	install -d $(INSTALLDIR)/iperf/usr/lib/
+-	install iperf/src/.libs/libiperf.so.0.0.0 $(INSTALLDIR)/iperf/usr/lib/libiperf.so.0.0.0
+-	$(STRIP) $(INSTALLDIR)/iperf/usr/lib/libiperf.so.0.0.0
++	install iperf/src/.libs/libiperf.so.0.0.0 $(INSTALLDIR)/iperf/usr/lib/libiperf.so.0
++	$(STRIP) $(INSTALLDIR)/iperf/usr/lib/libiperf.so.0
+ 	$(STRIP) $(INSTALLDIR)/iperf/usr/sbin/iperf
+-	cd $(INSTALLDIR)/iperf/usr/lib/ && \
+-		ln -sf libiperf.so.0.0.0 libiperf.so.0 && \
+-		ln -sf libiperf.so.0.0.0 libiperf.so
++#	cd $(INSTALLDIR)/iperf/usr/lib/ && \
++#		ln -sf libiperf.so.0.0.0 libiperf.so.0 && \
++#		ln -sf libiperf.so.0.0.0 libiperf.so
+ 
+ iperf-clean:
+ 	-@$(MAKE) -C iperf clean
