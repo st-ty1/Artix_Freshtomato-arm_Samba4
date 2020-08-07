@@ -21,6 +21,6 @@ If the filename of the lib to be shrinked and the filename in the .dynamic secti
 
 Amendments 3. -5. are included in libfoo_arm2.pl (in this repo). The Makefile in /release/src-rt-6.x.4708/router/ also has to be amended (included in "Makefile_libfoo.patch"), that libfoo.pl can be used without the --noopt option.
 
-actual size for ac68z (RT-AC56U; AIO-version): ~22 MB
+actual size for ac68z (RT-AC56U; AIO-version): ~22.7 MB
 
 BR st-ty1/st_ty/st_ty
