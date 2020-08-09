@@ -528,10 +528,6 @@ genSO("${root}/usr/lib/libhdb-samba4.so.11","${router}/samba4/bin/default/source
 genSO("${root}/usr/lib/libndr.so.0","${router}/samba4/bin/default/librpc/libndr.so.0", "${stripshared}", $samba_libs);
 genSO("${root}/usr/lib/libsamdb.so.0","${router}/samba4/bin/default/source4/dsdb/libsamdb.so.0", "${stripshared}", $samba_libs);
 
-## Die Bibliotheksbezeichnung in genSO("${root}/usr/lib/...) muss exakt mit den "(NEEDED)...Shared library:" bei readelf übereinstimmen,
-## Die Bibliotheksbezeichnung in genSO("${root}/usr/lib/...) dürfen kein Links sein und die Dateinamen müssen im Makefile bei den "*-install"-traget entsprechend geändert werden 
-##  sonst Fehlermeldung: "WARNING: Library is not used by anything, deleting.." 
-
 genSO("${root}/usr/lib/libgnutls.so.30","${router}/gnutls/lib/.libs/libgnutls.so.30", "${stripshared}", "-L${router}/gmp/.libs");
 genSO("${root}/usr/lib/mysql/libmysqlclient_r.so.16","${router}/mysql/libmysql_r/.libs/libmysqlclient_r.so.16", "${stripshared}"); # "-L${router}/libncurses/lib"); # libmysqlclient.so.16.0.0: not found,
 #genSO("${root}/usr/lib/mysql/libmysqlclient.so.16","${router}/mysql/libmysql/.libs/libmysqlclient.so.16", "${stripshared}", "-L${router}/libncurses/lib");   
@@ -545,9 +541,9 @@ genSO("${root}/usr/lib/libxtables.so.12","${router}/iptables-1.8.x/libxtables/.l
 genSO("${root}/usr/lib/libgmp.so.10","${router}/gmp/.libs/libgmp.so.10", "${stripshared}");
 genSO("${root}/usr/lib/libip4tc.so.2","${router}/iptables-1.8.x/libiptc/.libs/libip4tc.so.2", "${stripshared}", "-L${router}/libnfnetlink/src/.libs");
 genSO("${root}/usr/lib/libip6tc.so.2","${router}/iptables-1.8.x/libiptc/.libs/libip6tc.so.2", "${stripshared}", "-L${router}/libnfnetlink/src/.libs");
-genSO("${root}/usr/lib/libnetfilter_queue.so.1","${router}/libnetfilter_queue/src/.libs/libnetfilter_queue.so.1");   #-> wahrscheinlich nicht gebraucht
+genSO("${root}/usr/lib/libnetfilter_queue.so.1","${router}/libnetfilter_queue/src/.libs/libnetfilter_queue.so.1");   
 genSO("${root}/usr/lib/libmnl.so.0","${router}/libmnl/src/.libs/libmnl.so.0");
-genSO("${root}/usr/lib/libnetfilter_log.so.1","${router}/libnetfilter_log/src/.libs/libnetfilter_log.so.1");   #-> wahrscheinlich nicht gebraucht
+genSO("${root}/usr/lib/libnetfilter_log.so.1","${router}/libnetfilter_log/src/.libs/libnetfilter_log.so.1");   
 genSO("${root}/usr/lib/libmssl.so","${router}/mssl/libmssl.so");
 genSO("${root}/usr/lib/libbcm.so","${router}/libbcm/libbcm.so");
 
