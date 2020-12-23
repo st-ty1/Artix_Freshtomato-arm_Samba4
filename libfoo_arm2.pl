@@ -300,7 +300,7 @@ sub fillGaps
 				
 				if ($found == 0) {
 					print "Unable to resolve $sym used by $name\n", @users;
-					exit 1;
+#					exit 1;
 				}
 			}
 		}
