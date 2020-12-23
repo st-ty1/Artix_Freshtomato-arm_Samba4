@@ -11,10 +11,9 @@ How to build Samba 4.11.x for FreshTomato-arm:
  
 Rem.: To get the libfoo.pl script included in FT-arm repo working, following step are necessary: (all needed files are included in this repo and recognized by shell script "build_ft-arm_samba-4.11")
 1. The patch "0101-Create-short-Makefiles-for-Debian.patch" has to be amended. Reason: The arm-toolchain still contains an old libcrypto.so-library based on openssl-1.0.2u (located in /release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/arm-brcm-linux-uclibcgnueabi/sysroot/usr/lib/). This is an odd residue form the building process of the arm-toolchain by the buildroot method. Actually, openssl-1.1 is used by FT-arm. Only mkfs.hfs and fsck.hfs of diskdev-cmd are still linked to the old libcrypto.so instead of newer openssl-1.1 based libcrypto.so, and libfoo.pl will break. To avoid this two of the Makefiles within diskdev_cmd folder have to be directed to the newer oppenssl-1.1 based version of libcrypto.so.
-2. In /release/src-rt-6.x.4708/router/Makefile many of the "\*-install" targets, which copy the built shared libraries and the symlinks to $INSTALLDIR, have to be corrected to such extent, that they copy only the libs with their sonames to $(INSTALLDIR). Also the cached autoconf value "ac_cv_lib_pthread_sem_init" has to be removed from configure options of e2fsprogs/stamp-h1 target (done by "Makefile_libfoo.patch") 
-3. The library filenames have also to be amended in genSO-subroutine calls of the main part of libfoo.pl to their sonames. 
-4. The filename of the arm-version of readelf is wrong and must be corrected. 
-5. The exit command in subroutine fillGaps can be reactivated (was commented before), as for now the fillGaps subroutine works correctly without error.
+2. In Makefile of arm libfoo.pl is deactivated -> has to be uncommented again (done by "Makefile_libfoo.patch") 
+3. The filename of the arm-version of readelf is wrong and has to be corrected. 
+4. The exit command in subroutine fillGaps can be reactivated (was commented before), as for now the fillGaps subroutine works correctly without error.
 
 Amendments 3. -5. are included in libfoo_arm2.pl (in this repo). The Makefile in /release/src-rt-6.x.4708/router/ also has to be amended (included in "Makefile_libfoo.patch"), that libfoo.pl can be used without the --noopt option.
 
