@@ -541,35 +541,35 @@ genSO("${root}/usr/lib/libFLAC.so.8", "${router}/flac/src/libFLAC/.libs/libFLAC.
 genSO("${root}/usr/lib/libavcodec.so.52", "${router}/ffmpeg/libavcodec/libavcodec.a", "", "-L${router}/ffmpeg/libavutil -L${router}/zlib");
 genSO("${root}/usr/lib/libavutil.so.50", "${router}/ffmpeg/libavutil/libavutil.a", "-L${router}/zlib");
 
-genSO("${root}/usr/lib/liblzo2.so.2", "${router}/lzo/src/.libs/liblzo2.a", "${stripshared}");
+genSO("${root}/usr/lib/liblzo2.so.2.0.0", "${router}/lzo/src/.libs/liblzo2.a", "${stripshared}");
 genSO("${root}/usr/lib/libshared.so", "${router}/shared/libshared.a", "${stripshared}");
 genSO("${root}/usr/lib/libnvram.so", "${router}/nvram_arm/libnvram.so", "${stripshared}");
-genSO("${root}/usr/lib/libusb-1.0.so.0", "${router}/libusb10/libusb/.libs/libusb-1.0.a", "${stripshared}");
+genSO("${root}/usr/lib/libusb-1.0.so", "${router}/libusb10/libusb/.libs/libusb-1.0.a", "${stripshared}");
 #shibby
-genSO("${root}/usr/lib/libcurl.so.4", "${router}/libcurl/lib/.libs/libcurl.a", "${stripshared}", "-L${router}/openssl-1.1 -L${router}/zlib");
+genSO("${root}/usr/lib/libcurl.so.4.6.0", "${router}/libcurl/lib/.libs/libcurl.a", "${stripshared}", "-L${router}/openssl-1.1 -L${router}/zlib");
 genSO("${root}/usr/lib/libevent-2.1.so.7", "${router}/libevent/.libs/libevent.a", "${stripshared}");
 #nv genSO("${root}/usr/lib/libdaemon.so.0.5.0", "${router}/libdaemon/libdaemon/.libs/libdaemon.a");
-genSO("${root}/usr/lib/libiconv.so.2", "${router}/libiconv/lib/.libs/libiconv.a", "${stripshared}");
-genSO("${root}/usr/lib/libnfnetlink.so.0", "${router}/libnfnetlink/src/.libs/libnfnetlink.a", "${stripshared}");
-genSO("${root}/usr/lib/libsodium.so.23", "${router}/libsodium/src/libsodium/.libs/libsodium.a", "${stripshared}");
-genSO("${root}/usr/lib/libpng.so.3", "${router}/libpng/.libs/libpng.a", "${stripshared}", "-L${router}/zlib");
-genSO("${root}/usr/lib/libpng12.so.0", "${router}/libpng/.libs/libpng12.a", "${stripshared}", "-L${router}/zlib");
+genSO("${root}/usr/lib/libiconv.so.2.6.1", "${router}/libiconv/lib/.libs/libiconv.a", "${stripshared}");
+genSO("${root}/usr/lib/libnfnetlink.so.0.2.0", "${router}/libnfnetlink/src/.libs/libnfnetlink.a", "${stripshared}");
+genSO("${root}/usr/lib/libsodium.so.23.0.0", "${router}/libsodium/src/libsodium/.libs/libsodium.a", "${stripshared}");
+genSO("${root}/usr/lib/libpng.so.3.59.0", "${router}/libpng/.libs/libpng.a", "${stripshared}", "-L${router}/zlib");
+genSO("${root}/usr/lib/libpng12.so.0.59.0", "${router}/libpng/.libs/libpng12.a", "${stripshared}", "-L${router}/zlib");
 genSO("${root}/usr/lib/libjpeg.so", "${router}/jpeg/libjpeg.a", "${stripshared}");
-genSO("${root}/usr/lib/libxml2.so.2", "${router}/libxml2/.libs/libxml2.a","${stripshared}", "-L${router}/zlib");
-genSO("${root}/usr/lib/libipset.so.11", "${router}/ipset/lib/.libs/libipset.a", "${stripshared}");
-genSO("${root}/usr/lib/libpcre.so.1", "${router}/pcre/.libs/libpcre.a", "${stripshared}");
-genSO("${root}/usr/lib/libpcreposix.so.0", "${router}/pcre/.libs/libpcreposix.a", "${stripshared}");
-genSO("${root}/usr/lib/libsqlite3.so.0", "${router}/sqlite/.libs/libsqlite3.a", "${stripshared}");
-genSO("${root}/usr/lib/libext2fs.so.2", "${router}/e2fsprogs/lib/libext2fs.a", "${stripshared}", "-L${router}/e2fsprogs/lib");
+genSO("${root}/usr/lib/libxml2.so.2.9.10", "${router}/libxml2/.libs/libxml2.a","${stripshared}", "-L${router}/zlib");
+genSO("${root}/usr/lib/libipset.so.11.1.0", "${router}/ipset/lib/.libs/libipset.a", "${stripshared}");
+genSO("${root}/usr/lib/libpcre.so.1.12.0", "${router}/pcre/.libs/libpcre.a", "${stripshared}");
+genSO("${root}/usr/lib/libpcreposix.so.0.0.7", "${router}/pcre/.libs/libpcreposix.a", "${stripshared}");
+genSO("${root}/usr/lib/libsqlite3.so.0.8.6", "${router}/sqlite/.libs/libsqlite3.a", "${stripshared}");
+genSO("${root}/usr/lib/libext2fs.so.2.4", "${router}/e2fsprogs/lib/libext2fs.a", "${stripshared}", "-L${router}/e2fsprogs/lib");
 genSO("${root}/usr/lib/libncurses.so.6", "${router}/libncurses/lib/libncurses.a", "${stripshared}");
 genSO("${root}/usr/lib/libglib-1.2.so.0.0.10", "${router}/glib/.libs/libglib.a", "${stripshared}");
-genSO("${root}/usr/lib/libiperf.so.0", "${router}/iperf/src/.libs/libiperf.a", "${stripshared}");
-genSO("${root}/usr/lib/libebtc.so.0", "${router}/ebtables/.libs/libebtc.so.0.0.0", "${stripshared}");
+genSO("${root}/usr/lib/libiperf.so.0.0.0", "${router}/iperf/src/.libs/libiperf.a", "${stripshared}");
+genSO("${root}/usr/lib/libebtc.so.0.0.0", "${router}/ebtables/.libs/libebtc.so.0.0.0", "${stripshared}");
 genSO("${root}/usr/lib/libbcmcrypto.so", "${router}/libbcmcrypto/libbcmcrypto.so", "${stripshared}");
-genSO("${root}/usr/lib/libnetfilter_conntrack.so.3", "${router}/libnetfilter_conntrack/src/.libs/libnetfilter_conntrack.so.3.7.0", "${stripshared}", "-L${router}/libnfnetlink/src/.libs -L${router}/libmnl/src/.libs");
-genSO("${root}/usr/lib/liblibxtables.so.12", "${router}/iptables-1.8.x/libxtables/.libs/libxtables.so.12.3.0", "${stripshared}");
-genSO("${root}/usr/lib/mysql/libmysqlclient.so.16", "${router}/mysql/libmysql/.libs/libmysqlclient.so.16.0.0", "${stripshared}", "-L${router}/openssl-1.1 -L${router}/zlib -L${router}/libncurses/lib");
-genSO("${root}/usr/lib/mysql/libmysqlclient_r.so.16", "${router}/mysql/libmysql_r/.libs/libmysqlclient_r.so.16.0.0", "${stripshared}", "-L${router}/openssl-1.1 -L${router}/zlib -L${router}/libncurses/lib");
+genSO("${root}/usr/lib/libnetfilter_conntrack.so.3.7.0", "${router}/libnetfilter_conntrack/src/.libs/libnetfilter_conntrack.so.3.7.0", "${stripshared}", "-L${router}/libnfnetlink/src/.libs -L${router}/libmnl/src/.libs");
+genSO("${root}/usr/lib/liblibxtables.so", "${router}/iptables-1.8.x/libxtables/.libs/libxtables.so.12.3.0", "${stripshared}");
+genSO("${root}/usr/lib/mysql/libmysqlclient.so.16.0.0", "${router}/mysql/libmysql/.libs/libmysqlclient.so.16.0.0", "${stripshared}", "-L${router}/openssl-1.1 -L${router}/zlib -L${router}/libncurses/lib");
+genSO("${root}/usr/lib/mysql/libmysqlclient_r.so.16-0-0", "${router}/mysql/libmysql_r/.libs/libmysqlclient_r.so.16.0.0", "${stripshared}", "-L${router}/openssl-1.1 -L${router}/zlib -L${router}/libncurses/lib");
 
 print "\n";
 
